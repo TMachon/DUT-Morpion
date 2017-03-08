@@ -11,7 +11,8 @@ def partieMorpion () :
         while (not victoire and i>0) : #Tant que personne n'a gagné, et que la grille n'est pas complète(i>0)
             afficherTableau(cases)
             cases=tourJoueur(cases, i%2)
-            victoire = verifVictoire(cases)
+            if (i<=6) : #On ne vérifie la victoire qu'à partir du 3eme tour car il est impossible de gagner avant
+                victoire = verifVictoire(cases)
             i-=1
         if (i==0) : #Si la grille est remplié = Si personne n'a gagné
             afficherTableau(cases)
