@@ -52,8 +52,7 @@ def tourJoueur(tab, tour) :
         while (True) :
             choix = str(input("Joueur 2 : Où voulez-vous placer 'O' ?\n"))
             if (verifPlaceLibre(tab, choix)) :
-                break 
-        
+                break
     tab[int(choix[0])-1][int(choix[1])-1] = caractere
     return tab
 
@@ -64,11 +63,19 @@ def tourJoueur(tab, tour) :
 ##          val : contient l'emplacement de case saisie par l'utilisateur                   ##
 ##      Cette fontion vérifie que l'emplacement saisi par l'utilisateur est valide et libre ##
 def verifPlaceLibre(tab, val) :
-    if (int(val[0])<=3 and int(val[0])>=1 and int(val[1])<=3 and int(val[1])>=1 and tab[int(val[0])-1][int(val[1])-1]==" ") :
-    # Si la valeur saisie par l'utilisateur est bien dans la grille, et sur un emplacement libre
-        return True
+    if (len(val)==2) : #Si la valeur saisie par l'utilisateur est bien composée de 2 caractères
+        if (val[0]<='3' and val[0]>='1' and val[1]<='3' and val[1]>='1') : #Si la valeur saisie par l'utilisateur est bien composée de chiffre entre 1 et 3
+            if (tab[int(val[0])-1][int(val[1])-1]==" ") :
+            #Si la valeur saisie par l'utilisateur correspond à un emplacement libre
+                return True
+            else :
+                print("Erreur : emplacement saisi déjà occupé !")
+                return False
+        else :
+            print("Erreur : valeur non composée de chiffres entre 1 et 3!")
+            return False
     else :
-        print("Erreur : valeur erronée !")
+        print("Erreur : valeur non composée de 2 caractères !")
         return False
 
 #########################################################################
