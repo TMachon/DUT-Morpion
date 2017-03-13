@@ -65,8 +65,7 @@ def tourJoueur(tab, tour) :
 def verifPlaceLibre(tab, val) :
     if (len(val)==2) : #Si la valeur saisie par l'utilisateur est bien composée de 2 caractères
         if (val[0]<='3' and val[0]>='1' and val[1]<='3' and val[1]>='1') : #Si la valeur saisie par l'utilisateur est bien composée de chiffre entre 1 et 3
-            if (tab[int(val[0])-1][int(val[1])-1]==" ") :
-            #Si la valeur saisie par l'utilisateur correspond à un emplacement libre
+            if (tab[int(val[0])-1][int(val[1])-1]==" ") : #Si la valeur saisie par l'utilisateur correspond à un emplacement libre
                 return True
             else :
                 print("Erreur : emplacement saisi déjà occupé !")
@@ -85,13 +84,29 @@ def verifPlaceLibre(tab, val) :
 def verifVictoire(tab) :
     vainqueur = "n/d"
     #Les conditions suivantes testent chacune des lignes possible pour savoir si l'un des deux joueurs l'a rempli
+    if (tab[1][1]!=" ") : #Permet de faire 4 tests en moins si la case du centre n'est pas prise
+        if (tab[1][0]==tab[1][1]==tab[1][2]!=" ") :
+            if (tab[1][0]=="X") :
+                vainqueur = "1"
+            else :
+                vainqueur = "2"
+        elif (tab[0][1]==tab[1][1]==tab[2][1]!=" ") :
+            if (tab[0][1]=="X") :
+                vainqueur = "1"
+            else :
+                vainqueur = "2"
+        elif (tab[0][0]==tab[1][1]==tab[2][2]!=" ") :
+            if (tab[0][0]=="X") :
+                vainqueur = "1"
+            else :
+                vainqueur = "2"
+        elif (tab[0][2]==tab[1][1]==tab[2][0]!=" ") :
+            if (tab[0][2]=="X") :
+                vainqueur = "1"
+            else :
+                vainqueur = "2"
     if (tab[0][0]==tab[0][1]==tab[0][2]!=" ") :
         if (tab[0][0]=="X") :
-            vainqueur = "1"
-        else :
-            vainqueur = "2"
-    elif (tab[1][0]==tab[1][1]==tab[1][2]!=" ") :
-        if (tab[1][0]=="X") :
             vainqueur = "1"
         else :
             vainqueur = "2"
@@ -105,22 +120,7 @@ def verifVictoire(tab) :
             vainqueur = "1"
         else :
             vainqueur = "2"
-    elif (tab[0][1]==tab[1][1]==tab[2][1]!=" ") :
-        if (tab[0][1]=="X") :
-            vainqueur = "1"
-        else :
-            vainqueur = "2"
     elif (tab[0][2]==tab[1][2]==tab[2][2]!=" ") :
-        if (tab[0][2]=="X") :
-            vainqueur = "1"
-        else :
-            vainqueur = "2"
-    elif (tab[0][0]==tab[1][1]==tab[2][2]!=" ") :
-        if (tab[0][0]=="X") :
-            vainqueur = "1"
-        else :
-            vainqueur = "2"
-    elif (tab[0][2]==tab[1][1]==tab[2][0]!=" ") :
         if (tab[0][2]=="X") :
             vainqueur = "1"
         else :
