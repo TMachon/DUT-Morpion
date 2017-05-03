@@ -5,7 +5,7 @@ def partieMorpion () :
     jouer = True #Vrai si le(s) joueur(s) souhaite(nt) faire une partie
     while (jouer) :
         print("\n<!> Le format de réponse pour placer un caractère est '12' pour le placer première ligne, deuximème colonne -par exemple- <!>\n")
-        i = 9
+        i = 9 #Nombre de case du tableau = nombre de tours max avant la fin de la partie
         victoire = False #Vrai si l'un des deux joueurs gagne
         cases = [[" "," "," "],[" "," "," "],[" "," "," "]]
         while (not victoire and i>0) : #Tant que personne n'a gagné, et que la grille n'est pas complète(i>0)
@@ -14,7 +14,7 @@ def partieMorpion () :
             if (i<=6) : #On ne vérifie la victoire qu'à partir du 3eme tour car il est impossible de gagner avant
                 victoire = verifVictoire(cases)
             i-=1
-        if (i==0) : #Si la grille est remplié = Si personne n'a gagné
+        if (i==0) : #Si la grille est remplie = si personne n'a gagné
             afficherTableau(cases)
             print("\n -> Egalité !")
         jouer = bool(int(input("\nVoulez-vous rejouer ? (1 pour oui, 0 pour non) ")))
@@ -41,13 +41,15 @@ def afficherTableau(tab) :
 ##          tour : définit si c'est le tour du joueur 1(tour=1) ou du joueur 2(tour=0)          ##
 ##      Cette fonction gère la saisie de l'utilisateur chaque joueur en fonction du tour        ##
 def tourJoueur(tab, tour) :
-    if (tour==1) : #Si c'est le tour du joueur 1
+    #Si c'est le tour du joueur 1
+    if (tour==1) :
         caractere = "X"
         while (True) :
             choix = str(input("Joueur 1 : Où voulez-vous placer 'X' ?\n"))
             if (verifPlaceLibre(tab, choix)) :
                 break
-    else : #Si c\'est le tour du joueur 2
+    #Si c'est le tour du joueur 2
+    else :
         caractere = "O"
         while (True) :
             choix = str(input("Joueur 2 : Où voulez-vous placer 'O' ?\n"))
@@ -83,7 +85,7 @@ def verifPlaceLibre(tab, val) :
 ##      Cette fonction permet de verifier si un des joueur a gagné     ##
 def verifVictoire(tab) :
     vainqueur = "n/d"
-    #Les conditions suivantes testent chacune des lignes possible pour savoir si l'un des deux joueurs l'a rempli
+    #Les conditions suivantes testent chacune des lignes possible pour savoir si l'un des deux joueurs l'a remplie
     if (tab[1][1]!=" ") : #Permet de faire 4 tests en moins si la case du centre n'est pas prise
         if (tab[1][0]==tab[1][1]==tab[1][2]!=" ") :
             if (tab[1][0]=="X") :
